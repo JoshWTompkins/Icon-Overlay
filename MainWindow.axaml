@@ -1,0 +1,9 @@
+<Window
+    xmlns="https://github.com/avaloniaui"
+    Width="400"
+    Height="300"
+    SystemDecorations="None"
+    Topmost="True"
+    WindowStartupLocation="Manual"
+    Position="100,100">
+</Window>
