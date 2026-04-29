@@ -15,11 +15,12 @@
 
     <Grid>
         <Image Name="IconDisplay"
-               Width="128"
-               Height="128"
+               Stretch="Uniform"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               Source="{Binding ImageFromBinding}" />
+               Source="{Binding ImageFromBinding}"
+               RenderOptions.BitmapInterpolationMode="HighQuality"
+        />
     </Grid>
 
 </Window>
