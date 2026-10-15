@@ -1,0 +1,73 @@
+name: Build and release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install openappx
+        run: python -m pip install openappx
+
+      - name: Restore dependencies
+        run: dotnet restore IconOverlay.csproj
+
+      - name: Publish portable application
+        run: |
+          dotnet publish IconOverlay.csproj -c Release -p:PublishProfile=PortableExe
+
+      - name: Prepare portable ZIP
+        run: |
+          cd publish/portable
+          zip -qr ../IconOverlay-portable.zip .
+
+      - name: Publish MSIX layout
+        run: dotnet publish IconOverlay.csproj -c Release -p:PublishProfile=Msix
+
+      - name: Package unsigned MSIX
+        run: |
+          openappx pack \
+            --root publish/msix \
+            --out publish/IconOverlay-unsigned.msix
+
+      - name: Upload unsigned MSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-msix
+          path: publish/IconOverlay-unsigned.msix
+          if-no-files-found: error
+          retention-days: 1
+
+      - name: Create draft GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            publish/IconOverlay-portable.zip \
+            --draft \
+            --generate-notes \
+            --title "IconOverlay $GITHUB_REF_NAME"

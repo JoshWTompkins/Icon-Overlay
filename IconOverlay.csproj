@@ -25,6 +25,18 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <!-- <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup> -->

@@ -7,7 +7,7 @@ read -rsp "Enter PFX password: " pfx_password
 echo
 
 echo "Signing MSIX package..."
-psign-tool --mode portable sign \
+psign-tool sign \
   --pfx "$certificate_path" \
   --password "$pfx_password" \
   --digest sha256 \
