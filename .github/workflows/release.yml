@@ -47,6 +47,10 @@ jobs:
       - name: Publish MSIX layout
         run: dotnet publish IconOverlay.csproj -c Release -p:PublishProfile=Msix
 
+      - name: Remove debug symbols
+        run: |
+          find publish/portable publish/msix -type f -name '*.pdb' -delete
+
       - name: Package unsigned MSIX
         run: |
           openappx pack \
