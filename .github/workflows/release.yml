@@ -51,6 +51,16 @@ jobs:
         run: |
           find publish/portable publish/msix -type f -name '*.pdb' -delete
 
+      - name: Set MSIX version
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          VERSION_NAME: ${{ github.ref_name }}
+        run: |
+          VERSION_NAME="${VERSION_NAME#v}.0"
+          export VERSION_NAME
+          envsubst '${VERSION_NAME}' < publish/msix/AppxManifest.xml > publish/msix/AppxManifest.xml.tmp
+          mv publish/msix/AppxManifest.xml.tmp publish/msix/AppxManifest.xml
+
       - name: Package unsigned MSIX
         run: |
           openappx pack \

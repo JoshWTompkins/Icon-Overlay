@@ -8,7 +8,7 @@
   <Identity
     Name="Incog.IconOverlay"
     Publisher="CN=Incog"
-    Version="1.0.0.0"
+    Version="${VERSION_NAME}"
     ProcessorArchitecture="x64" />
 
   <Properties>
@@ -42,7 +42,7 @@
       <uap:VisualElements
         DisplayName="IconOverlay"
         Description="IconOverlay desktop application"
-        BackgroundColor="transparent"
+        BackgroundColor="white"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png" />
 
