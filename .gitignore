@@ -5,7 +5,6 @@ publish/
 *.msix
 
 # Private signing material
-certificates/
 *.pfx
 *.p12
 *.key
