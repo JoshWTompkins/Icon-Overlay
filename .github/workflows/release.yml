@@ -82,7 +82,7 @@ jobs:
         run: |
           gh release create "$GITHUB_REF_NAME" \
             publish/IconOverlay-portable.zip \
-            certificates/IconOverlay.cer
+            certificates/IconOverlay.cer \
             --draft \
             --generate-notes \
             --title "IconOverlay $GITHUB_REF_NAME"
