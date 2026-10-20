@@ -37,6 +37,14 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <AvaloniaResource Include="Assets/Square48x48Logo.ico" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <ApplicationIcon>Assets/Square48x48Logo.ico</ApplicationIcon>
+</PropertyGroup>
+
   <!-- <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup> -->
