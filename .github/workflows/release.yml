@@ -53,7 +53,7 @@ jobs:
 
       - name: Add .txt extension to LICENSE in MSIX package
         run: |
-          mv publish/msix/LICENSE publish/msix LICENSE.txt
+          mv publish/msix/LICENSE publish/msix/LICENSE.txt
 
       - name: Set MSIX version
         if: startsWith(github.ref, 'refs/tags/v')
